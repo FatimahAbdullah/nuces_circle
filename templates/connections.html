@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+	<title>My Connections</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'connections.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
+      <a class="navbar-brand mx-2" href="#">NUCES-Circle</a>
+      <form class="form-inline" role="form">
+        <div class="input-group">
+          <input class="form-control mb-2 mr-sm-2" type="search" value="search" id="example-search-input">
+          <span class="input-group-append">
+            <button class="btn btn-outline-secondary mb-2 mr-sm-2" type="button" onclick="search()">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+</form>
+</nav>
+
+<div class="container emp-profile">
+   <div class="row" id="connections">
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card card-inverse card-info">
+            <img class="card-img-top" src="https://img.freepik.com/free-vector/young-anonymous-hacker-with-flat-design_23-2147887812.jpg">
+            <div class="card-block">
+                <h4 class="card-title">Marriam Sajid</h4>
+                <div class="card-text">
+                    Web developer looking for a Job!
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-dark btn-sm-2" disabled>Connected</button>
+                <button class="btn btn-outline-dark btn-sm-2">Message</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card card-inverse card-info">
+            <img class="card-img-top" src="https://img.freepik.com/free-vector/young-anonymous-hacker-with-flat-design_23-2147887812.jpg">
+            <div class="card-block">
+                <h4 class="card-title">Marriam Sajid</h4>
+                <div class="card-text">
+                    Web developer looking for a Job!
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-dark btn-sm-2" disabled>Connected</button>
+                <button class="btn btn-outline-dark btn-sm-2">Message</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card card-inverse card-info">
+            <img class="card-img-top" src="https://img.freepik.com/free-vector/young-anonymous-hacker-with-flat-design_23-2147887812.jpg">
+            <div class="card-block">
+                <h4 class="card-title">Marriam Sajid</h4>
+                <div class="card-text">
+                    Web developer looking for a Job!
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-dark btn-sm-2" disabled>Connected</button>
+                <button class="btn btn-outline-dark btn-sm-2">Message</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card card-inverse card-info">
+            <img class="card-img-top" src="https://img.freepik.com/free-vector/young-anonymous-hacker-with-flat-design_23-2147887812.jpg">
+            <div class="card-block">
+                <h4 class="card-title">Marriam Sajid</h4>
+                <div class="card-text">
+                    Web developer looking for a Job!
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-dark btn-sm-2" disabled>Connected</button>
+                <button class="btn btn-outline-dark btn-sm-2">Message</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card card-inverse card-info">
+            <img class="card-img-top" src="https://img.freepik.com/free-vector/young-anonymous-hacker-with-flat-design_23-2147887812.jpg">
+            <div class="card-block">
+                <h4 class="card-title">Marriam Sajid</h4>
+                <div class="card-text">
+                    Web developer looking for a Job!
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-dark btn-sm-2" disabled>Connected</button>
+                <button class="btn btn-outline-dark btn-sm-2">Message</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card card-inverse card-info">
+            <img class="card-img-top" src="https://img.freepik.com/free-vector/young-anonymous-hacker-with-flat-design_23-2147887812.jpg">
+            <div class="card-block">
+                <h4 class="card-title">Marriam Sajid</h4>
+                <div class="card-text">
+                    Web developer looking for a Job!
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-dark btn-sm-2" disabled>Connected</button>
+                <button class="btn btn-outline-dark btn-sm-2">Message</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card card-inverse card-info">
+            <img class="card-img-top" src="https://img.freepik.com/free-vector/young-anonymous-hacker-with-flat-design_23-2147887812.jpg">
+            <div class="card-block">
+                <h4 class="card-title">Marriam Sajid</h4>
+                <div class="card-text">
+                    Web developer looking for a Job!
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-dark btn-sm-2" disabled>Connected</button>
+                <button class="btn btn-outline-dark btn-sm-2">Message</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card card-inverse card-info">
+            <img class="card-img-top" src="https://img.freepik.com/free-vector/young-anonymous-hacker-with-flat-design_23-2147887812.jpg">
+            <div class="card-block">
+                <h4 class="card-title">Marriam Sajid</h4>
+                <div class="card-text">
+                    Web developer looking for a Job!
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-dark btn-sm-2" disabled>Connected</button>
+                <button class="btn btn-outline-dark btn-sm-2">Message</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="{% static 'connections.js' %}"></script>
+</body>
+</html>
