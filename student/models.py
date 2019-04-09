@@ -4,11 +4,13 @@ from company.models import Company
 # Create your models here.
 class Student(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to='images/', blank=True)
 	bio = models.TextField(max_length=500, blank=True)
 	connections = models.ManyToManyField("self")
 
 class Post(models.Model):
 	student = models.ForeignKey(Student, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to='posts/', blank=True)
 	body = models.TextField()
 	date = models.DateTimeField(auto_now_add=True)
 
