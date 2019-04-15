@@ -7,12 +7,16 @@ class Student(models.Model):
 	image = models.ImageField(upload_to='images/', blank=True)
 	bio = models.TextField(max_length=500, blank=True)
 	connections = models.ManyToManyField("self")
+	def __str__(self):
+		return self.user.username
 
 class Post(models.Model):
 	student = models.ForeignKey(Student, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='posts/', blank=True)
 	body = models.TextField()
 	date = models.DateTimeField(auto_now_add=True)
+	def __str__(self):
+		return self.body
 
 class Accomplishment(models.Model):
 	student = models.ForeignKey(Student, on_delete=models.CASCADE)
