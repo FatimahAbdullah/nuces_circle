@@ -4,10 +4,14 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 
 def home(request):
+    if request.user.is_authenticated:
+        print('authenticated')
+        return redirect('/student/feed')
+    print('NOT authenticated')
     return render(request, 'home.html')
 def login(request):
     if request.method == 'POST':
-        user = auth.authenticate(username=request.POST['username'],password=request.POST['password'])
+        user = auth.authenticate(username=request.POST['username_login'],password=request.POST['password_login'])
         if user is not None:
             auth.login(request, user)
             return redirect('student/feed')
@@ -18,7 +22,7 @@ def login(request):
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
-        return redirect('')
+        return redirect('home')
 def student_signup(request):
     if request.method == 'POST':
         if request.POST['key'] == request.POST['key_confirm']:

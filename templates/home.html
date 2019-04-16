@@ -15,9 +15,9 @@
     <a class="navbar-brand mx-2" href="#">NUCES-Circle</a>
     <form class="form-inline" role="form" method="POST" action="{% url 'login' %}">
     {% csrf_token %}
-      <input type="text" class="form-control mb-2 mr-sm-2" id="email_login" placeholder="Enter email">
-      <input type="text" class="form-control mb-2 mr-sm-2" id="password_login" placeholder="Enter password">
-      <button type="button" class="btn btn-outline-secondary mb-2 mr-sm-2" onclick="validate()">Login</button>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="username_login" name="username_login" placeholder="Enter username"/>
+      <input type="password" class="form-control mb-2 mr-sm-2" id="password_login" name="password_login" placeholder="Enter password"/>
+      <input type="submit" class="btn btn-outline-secondary mb-2 mr-sm-2" value="Login" />
       <a href="javascript:;" class="forget mb-2 mr-sm-2" data-toggle="modal" data-target=".forget-modal">Forgot password?</a>
     </form>
   </nav>
