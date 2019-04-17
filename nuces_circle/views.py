@@ -32,8 +32,8 @@ def student_signup(request):
             except User.DoesNotExist:
                 user = User.objects.create_user(request.POST['username'], password=request.POST['key'])
                 fullname=request.POST['fullname'].split(" ",1)
-                user.first_name=fullname[0]
-                user.last_name=fullname[1]
+                user.first_name=fullname[0].lower().capitalize()
+                user.last_name=fullname[1].lower().capitalize() 
                 user.email=request.POST['email']
                 user.save()
                 auth.login(request,user)

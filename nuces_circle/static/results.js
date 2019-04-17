@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html>
-{% load staticfiles %}
-<head>
-	<title>Search Results</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'results.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
-      <a class="navbar-brand mx-2" href="#">NUCES-Circle</a>
-      <form class="form-inline" role="form">
-        <div class="input-group">
-          <input class="form-control mb-2 mr-sm-2" type="search" value="search" id="example-search-input">
-          <span class="input-group-append">
-            <button class="btn btn-outline-secondary mb-2 mr-sm-2" type="button" onclick="search()">
-                <i class="fa fa-search"></i>
-            </button>
-        </span>
-    </div>
-</form>
-</nav>
-<div class="container emp-profile">
-   <div class="row">
-     <div id="div_search"></div>
-   </div>
-   <div class="row" id="results">
-     <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+function yHandler(){
+    var wrap= document.getElementById('results');
+    var contentHeight = wrap.offsetHeight;
+    var yOffset = window.pageYOffset;
+    var y = yOffset + window.innerHeight;
+    if (y >= contentHeight) {
+        wrap.innerHTML += `<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
         <div class="card card-inverse card-info">
             <img class="card-img-top" src="{% static 'anon.jpg' %}">
             <div class="card-block">
@@ -39,7 +17,7 @@
                 <button class="btn btn-dark btn-sm-2">Connect</button>
                 <button class="btn btn-outline-dark btn-sm-2">Message</button>
             </div>
-        </div>
+        </div>  
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
         <div class="card card-inverse card-info">
@@ -54,7 +32,7 @@
                 <button class="btn btn-dark btn-sm-2">Connect</button>
                 <button class="btn btn-outline-dark btn-sm-2">Message</button>
             </div>
-        </div>
+        </div>  
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
         <div class="card card-inverse card-info">
@@ -69,7 +47,7 @@
                 <button class="btn btn-dark btn-sm-2">Connect</button>
                 <button class="btn btn-outline-dark btn-sm-2">Message</button>
             </div>
-        </div>
+        </div>  
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
         <div class="card card-inverse card-info">
@@ -84,28 +62,74 @@
                 <button class="btn btn-dark btn-sm-2">Connect</button>
                 <button class="btn btn-outline-dark btn-sm-2">Message</button>
             </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-        <div class="card card-inverse card-info">
-            <img class="card-img-top" src="{% static 'anon.jpg' %}">
-            <div class="card-block">
-                <h4 class="card-title">Marriam Sajid</h4>
-                <div class="card-text">
-                    Web developer looking for a Job!
+        </div>  
+    </div>`;
+    }
+}
+
+var search_pool = new Array();
+
+function SearchWidget(id, count, filter1, filter2, filter3) {
+    this.count = count;
+    this.filt = new Array();
+    if (count == 3) {
+        this.filt[count - 1] = filter3
+        this.filt[count - 2] = filter2
+        this.filt[count - 3] = filter1
+
+    } else if (count == 2) {
+        this.filt[count - 1] = filter2
+        this.filt[count - 2] = filter1
+    }
+    else if (count == 1) {
+        this.filt[count - 1] = filter1
+    }
+
+    this.id = id;
+
+    search_pool[this.id] = this;
+}
+
+SearchWidget.prototype.render = function (divID) {
+    let html = this.getFilterHTML();
+
+    document.getElementById(divID).innerHTML = html;
+}
+
+SearchWidget.prototype.getFilterHTML = function () {
+    let html = `<section class="search-sec">
+    <div class="container-fluid">
+        <form action="#" method="post" novalidate="novalidate">
+            <div class="row">
+                <div class="col-md-12">
+                <div class="row" style="align-content: space-around">
+
+                `
+    let widths = 12 / (this.count + 1);
+    for (let i = 0; i < this.count; i++) {
+        html += `<div class="col-md-`;
+        html += widths;
+        html += ` ">
+                    <input type="text" class="form-control search-slt" placeholder="`;
+        html += this.filt[i];
+        html += `">
+                    </div>`;
+
+    }
+    html += `                    <div class=" col-md-4 ">
+                <button type="button" style="width:50%;min-width: 100px;"  class="btn btn-primary">Filter</button>
+            </div>
+
+                </div>
                 </div>
             </div>
-            <div class="card-footer">
-                <button class="btn btn-dark btn-sm-2">Connect</button>
-                <button class="btn btn-outline-dark btn-sm-2">Message</button>
-            </div>
-        </div>
+        </form>
     </div>
-   </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="{% static 'results.js' %}"></script>
-</body>
-</html>
+    </section>`
+    return html;
+}
+var s1 = new SearchWidget(2, 3, "Interests", "Skills", "Graduating Date");
+function load() {
+    s1.render("div_search");
+}
+window.onscroll = yHandler;

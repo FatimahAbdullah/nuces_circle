@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  {% block styles %}
+  {% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
+    <a class="navbar-brand mx-2" href="#">NUCES-Circle</a>
+    {% if user.is_authenticated %}
+    <div>
+    <form class="form-inline" role="form">
+      <div class="input-group">
+        <input class="form-control mb-2 mr-sm-2" type="search" value="search" id="example-search-input">
+        <span class="input-group-append">
+          <button class="btn btn-outline-secondary mb-2 mr-sm-2" type="button" onclick="search()">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+      <a class="btn btn-outline-secondary mb-2 mr-sm-2" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
+    </form>
+    <form class="form-inline" id="logout" method="POST" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <input type="hidden" />
+    </form>
+  </div>
+    {% else %}
+    <form class="form-inline" role="form" method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+      <input type="text" class="form-control mb-2 mr-sm-2" id="username_login" name="username_login" placeholder="Enter username"/>
+      <input type="password" class="form-control mb-2 mr-sm-2" id="password_login" name="password_login" placeholder="Enter password"/>
+      <input type="submit" class="btn btn-outline-secondary mb-2 mr-sm-2" value="Login" />
+      <a href="javascript:;" class="forget mb-2 mr-sm-2" data-toggle="modal" data-target=".forget-modal">Forgot password?</a>
+    </form>
+    {% endif %}
+  </nav>
+  <div class="container emp-profile">
+  {% block content %}
+  {% endblock %}
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  {% block javascript %}
+  {% endblock %}
+</body>
+</html>
