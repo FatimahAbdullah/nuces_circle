@@ -51,19 +51,20 @@
 								</li>
 							</ul>
 						</div>
-						<div class="card-body">
-							<div class="tab-content" id="myTabContent">
+						<form class="card-body" method="post" enctype="multipart/form-data" action="add_post" >
+              {% csrf_token %}
+              <div class="tab-content" id="myTabContent">
 								<div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
 									<div class="form-group">
-										<label class="sr-only" for="message">post</label>
-										<textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+										<label class="sr-only" for="post_body">post</label>
+										<textarea class="form-control" id="post_body" name="post_body" rows="3" placeholder="What are you thinking?"></textarea>
 									</div>
 
 								</div>
 								<div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
 									<div class="form-group">
 										<div class="custom-file">
-											<input type="file" class="custom-file-input" id="customFile">
+											<input type="file" class="custom-file-input" id="post_image" name="post_image" accept="image/*" >
 											<label class="custom-file-label" for="customFile">Upload image</label>
 										</div>
 									</div>
@@ -86,7 +87,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 				<!-- Post /////-->
 
@@ -334,5 +335,9 @@ function follow(){
   window.location = "company.html";
 }
 window.onscroll = yHandler;
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
 </script>
 {% endblock %}
