@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from student.models import Student
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.core.mail import send_mail
 
 def home(request):
     if request.user.is_authenticated:
@@ -33,12 +34,19 @@ def student_signup(request):
                 user = User.objects.create_user(request.POST['username'], password=request.POST['key'])
                 fullname=request.POST['fullname'].split(" ",1)
                 user.first_name=fullname[0].lower().capitalize()
-                user.last_name=fullname[1].lower().capitalize() 
+                user.last_name=fullname[1].lower().capitalize()
                 user.email=request.POST['email']
                 user.save()
                 auth.login(request,user)
                 student=Student(user=user)
                 student.save()
+                send_mail(
+                'NUCES Circle Validation',
+                'Hi user, \n\nYour NUCES-Circle account has been created. Enjoy!\n\nBest Regards,\nNUCES-Circle Team',
+                'nuces.circle.confirmation@gmail.com',
+                [user.email],
+                fail_silently=False,
+                )
                 return redirect('student/feed')
         else:
             return render(request, 'home.html', {'error':'Passwords must match'})
